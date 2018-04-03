@@ -1,0 +1,59 @@
+package com.example.ashar.catinder;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+
+
+import android.widget.TextView;
+
+public class Home_Activity extends AppCompatActivity {
+
+    public static class MyPagerAdapter extends FragmentPagerAdapter {
+
+        MyPagerAdapter(FragmentManager fragmentManager) {
+            super(fragmentManager);
+        }
+
+        // Returns the fragment to display for that page
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0: // Fragment # 1 - This will show FirstFragment
+                    return cat1.newInstance(String.valueOf(0), "Page # 1");
+                case 1: // Fragment # 2 - This will show SecondFragment
+                    return cat2.newInstance(String.valueOf(1), "Page # 2");
+                case 2: // Fragment # 3 - This will show ThirdFragment
+                    return cat3.newInstance(String.valueOf(2), "Page # 3");
+                case 3: // Fragment # 4 - This will show FourthFragment
+                    return cat4.newInstance(String.valueOf(3), "Page # 4");
+                case 4: // Fragment # 5 - This will show FifthFragment
+                    return cat4.newInstance(String.valueOf(4), "Page # 5");
+                case 5: // Fragment # 6 - This will show SixthFragment
+                    return cat6.newInstance(String.valueOf(5), "Page # 6");
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 0;
+        }
+    }
+    FragmentPagerAdapter adapterViewPager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home_);
+        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
+        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
+        vpPager.setAdapter(adapterViewPager);
+        vpPager.getCurrentItem();
+        vpPager.setCurrentItem(1);
+    }
+}
